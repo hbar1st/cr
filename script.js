@@ -23,14 +23,34 @@ let denominations = [ // in cents
   ['ONE HUNDRED', 10000]
 ]
 
-//display the price on loading the page
 const priceEl = document.getElementById('price');
+const cashInDrawer = document.getElementById('cashInDrawer');
+const drawer = document.querySelector('.drawer');
+const purchase = document.getElementById('purchase-btn');
+const form = document.querySelector('form');
+const kaching = new Audio("kaching.mp3");
+
+//display the price on loading the page
 priceEl.textContent = `$${price}`;
 
 //TODO: figure out how to take the cid and display it at loading time
-const cashInDrawer = document.getElementById('cashInDrawer');
 cid.forEach( (type, amt) => {
   console.log(type, amt);
   
+});
+
+//TODO: react to the purchase button
+purchase.addEventListener("animationend", () => purchase.classList.remove('button'));
+purchase.addEventListener('animationEnd', () => drawer.classList.remove('close'));
+form.addEventListener('animationEnd', () => form.classList.remove('close'));
+purchase.addEventListener('click', (e) => {
+  e.preventDefault();
+  purchase.classList.add('button');
+  kaching.play();
+  setTimeout(() => {
+    drawer.classList.add('close');
+    form.classList.add('close');
+  
+  }, 500);
 });
 //TODO: update the displayed CID from whatever's left at the end of a purchase

@@ -15,32 +15,78 @@ img {
     min-height: 50px;
     
 }
+body {
+    background-color: rgb(192, 175, 199);
+}
 main {
     display: grid;
     grid-template-columns: auto;
-    grid-template-rows: 1fr 1.5fr 2fr;
+    grid-template-rows: .2fr 3.5fr 2fr;
     justify-content: space-evenly;
     row-gap: 0px;
 }
 form {
-    margin: 1rem;
+    margin: 1rem 0 auto 0;
     border: 1px solid black;
     font-size: 2rem;
     padding: 1rem;
     display: flex;
+    row-gap: 1rem;
+    justify-content: flex-start;
+    align-items: flrex-start;
     flex-direction: column;
     background-color:#a0c4ed;
+    
+    background: radial-gradient(white 9px, transparent 10px),
+    repeating-radial-gradient(
+    hsl(253, 80%, 90%) 0,
+    #f0f0f0 20px,
+    white 54px,
+    transparent 15px,
+    white 11px,
+    transparent 6px
+    );
+    background-size: 3% 90%;
+    
 }
 button {
-    border-radius: 10px;
+    box-sizing: content-box;
+    border-radius: 5px;
     width: 50%;
+    max-width: 10rem;
+    color: rgb(252, 235, 251);
+    font-weight: 600;
+    letter-spacing: 1px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-kerning: normal;
+    font-style: oblique 2deg;
     margin: 1rem auto auto auto;
     padding: .5rem 1rem .5rem 1rem;
-    background: linear-gradient(  rgb(123, 77, 145) 1%, white 5%, rgb(171, 108, 201) 30%,  rgb(180, 114, 211),  rgb(171, 108, 201),  rgb(171, 108, 201),  rgb(160, 100, 188),  rgb(123, 77, 145));
+    background: linear-gradient(  rgb(37, 24, 44) 2%,rgb(171, 108, 201) 3%, rgb(171, 108, 201) 20%,
+    rgb(99, 62, 116) 30%,
+     rgb(57, 35, 68) 50%);
+    
+    box-shadow: inset;
 }
+
+button:hover {
+    box-shadow: 0px 0px 10px 9px rgb(202, 177, 212);
+    cursor: pointer;
+}
+
+#coinarea > div {
+    border-left: 3px solid black;
+    border-right: 3px solid black;
+}
+
+#billarea > div {
+    border-left: 3px solid black;
+    border-right: 3px solid black;
+}
+
 .bill {
     transform-origin: 35% 80%;
-    transform: rotate(90deg);
+    transform: rotate(90deg) translate(2rem, 1rem);
     padding: 0;
     margin: 0;
 }
@@ -50,42 +96,95 @@ button {
     object-fit: fill;
     text-align: center;
 }
+.vertical {
+    border: none !important;
+}
+.lshift {
+    transform-origin: bottom right;
+    transform: rotate(90deg) translate(1rem, 6.6rem);
+}
+
+.shift {
+    trasnform-origin: bottom right;
+    transform: rotate(90deg) translate(-1rem, -3rem);
+}
+#register {
+    z-index: 2;
+    color: gold;
+    font-weight: 600;
+    text-align: center;
+    background: linear-gradient(black, rgb(35, 33, 33), rgb(73, 63, 63));
+    height: 1.4rem;
+    background-color: black;
+    border-bottom: 5px solid black;
+    position: absolute;
+    top: 0;
+    width: calc(100vw - 1rem);
+    margin: 0 auto 0 auto;
+    border-bottom-left-radius: 55px;
+    border-bottom-right-radius: 55px;
+    font-stretch:ultra-expanded;
+
+    &::before, &::after {
+        content: '$$$';
+        color: gold;
+        padding: 1rem;
+        font-family:'Courier New', Courier, monospace;
+        font-stretch:ultra-expanded;
+        font-variant-numeric:oldstyle-nums;
+        font-weight: 600;
+    }
+}
 
 .drawer {
-    background: linear-gradient(gray 15%,  black);
     color: rgb(245, 225, 113);
     font-weight: 600;
+    border: 3px solid black;
+    
+}
+#coinarea, #billarea {
+
+   /* background: repeating-linear-gradient(rgb(152, 152, 152), gray , black 80%,  rgb(0, 0, 0)),
+   */
+   background: radial-gradient(black 9px, transparent 10px),
+    repeating-radial-gradient(
+    black 0,
+    #a29797 20px,
+    rgb(148, 136, 136) 54px,
+    transparent 15px,
+    rgb(49, 46, 46) 11px,
+    transparent 6px);
+    background-size: 3% 190%;
     
     text-align: center;
     align-content: space-around;
     justify-content: space-between;
     align-items: stretch;
     justify-items: stretch;
-    border: 1px solid black;
 }
 
 #coinarea {
+    background: radial-gradient(black 9px, transparent 10px),
+    repeating-radial-gradient(
+    black 0,
+    #a29797 20px,
+    rgb(148, 136, 136) 54px,
+    transparent 1px,
+    rgb(49, 46, 46) 25px,
+    transparent 6px);
+    background-size: 3% 190%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows:  1fr auto 0.8fr;
-    
-    padding-bottom: 1rem;
-    
+    grid-template-rows:  2fr auto 0.8fr;    
+    padding-bottom: 2.5rem;    
 }
+    
 
 #billarea {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1.1fr auto auto;
+    grid-template-rows: 0.8fr 2fr auto;
     margin-top: -2rem;
-}
-
-#coinarea div {
-    border: 1px solid black;
-}
-
-#billarea div {
-    border: 1px solid black;
 }
 
 .center {
@@ -94,10 +193,37 @@ button {
     border-width: 0;
 }
 
+body > main > form > div:nth-child(1) {
+    margin-top: 2.5rem;
+}
+form > div {
+    margin-left: 1rem;
+    color: rgb(123, 77, 145);
+    font-weight: 600;
+    width: fit-content;
+    background: linear-gradient(45deg, white 10%, rgb(230, 190, 249), white);    
+}
+
+.button{
+    animation: depress forwards 2s;
+}
+.close {
+    animation: close forwards 1s linear;
+}
+
+@keyframes depress{
+    0% {transform: scale(0.95)}
+    100%{transform: scale(1)}
+}
+
+@keyframes close{
+    0% { transform: trasnlateY(-1px)}
+    100% { transform: translateY(-290px)}
+}
 /** media rule to make the cash drawer portrait orientation for cellphones and smaller screens */
 @media only screen and (max-width: 590px) {
     
-   .drawer {
-    display: none !important; /* had to write important here because this class is less specific than earlier id styles */
-   }
+    #coinarea, #billarea {
+        display: none !important; /* had to write important here because this class is less specific than earlier id styles */
+    }
 }

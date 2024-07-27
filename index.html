@@ -9,47 +9,51 @@
 <body>
     <main>
         
-        <div class="drawer" id="coinarea">
-            <div class="header"><div class="center">Denomination</div></div>
-            
-            <div><img decoding="async" class="coin" src="images/1-cent.png" alt="Penny" ></div>
-            <div><img decoding="async" class="coin" src="images/5-cent.png" alt="Nickel"  ></div>
-            <div><img decoding="async" class="coin" src="images/10-cent.png" alt="Dime"  ></div>
-            <div><img decoding="async" class="coin" src="images/25-cent.png" alt="Quarter"  ></div>
-            <div class="header spacer"></div>
-            <div>Cent</div>            
-            <div>Nickel</div>            
-            <div>Dime</div>            
-            <div>Quarter Dollar</div>
-            
-            <div class="header"><div class="center">Count</div></div>
-            <div class="count">1</div>
-            <div class="count">1</div>
-            <div class="count">1</div>
-            <div class="count">1</div>
-            
-        </div>
-        <div class="drawer" id="billarea">
-            
-            <div class="header spacer"></div>
-            <div><img decoding="async" class="bill" src="images/1-dollar-bill.jpg" alt="Ten"  height="50"></div>
-            <div ><img decoding="async" class="bill" src="images/10-dollar-bill.jpg" alt="Twenty"  height="50"></div>
-            <div><img decoding="async" class="bill" src="images/50-dollar-bill.jpg" alt="Fifty"  height="50"></div>
-            <div><img loading="async" class="bill" src="images/100-dollar-bill.jpg" alt="Hundred"  height="50"></div>
-            
-            
-            <div class="header spacer"></div>
-            <div>$10 Dollar Bills</div>
-            <div>$20 Dollar Bills</div>
-            <div>$50 Dollar Bills</div>
-            <div>$100 Dollar Bills</div>
-            
-            <div class="header"><div class="center">Count</div></div>
-            <div class="count">1</div>
-            <div class="count">1</div>
-            <div class="count">1</div>
-            <div class="count">1</div>
-            
+        <div id="register">CASH</div>
+        <div class="drawer">
+            <div id="coinarea">
+                <div class="header"><div class="center">Denomination</div></div>
+                
+                <div><img decoding="async" class="coin" src="images/1-cent.png" alt="Penny" ></div>
+                <div><img decoding="async" class="coin" src="images/5-cent.png" alt="Nickel"  ></div>
+                <div><img decoding="async" class="coin" src="images/10-cent.png" alt="Dime"  ></div>
+                <div><img decoding="async" class="coin" src="images/25-cent.png" alt="Quarter"  ></div>
+                <div class="header spacer"></div>
+                <div class="vertical shift">Cent</div>            
+                <div class="vertical shift">Nickel</div>            
+                <div class="vertical shift">Dime</div>            
+                <div class="vertical shift">Quarter</div>
+                
+                <div class="header"><div class="center">Count</div></div>
+                <div class="count">1</div>
+                <div class="count">1</div>
+                <div class="count">1</div>
+                <div class="count">1</div>
+                
+            </div>
+            <div id="billarea">
+                
+                
+                <div><img decoding="async" class="bill" src="images/1-dollar-bill.jpg" alt="One"  height="50"></div>
+                <div ><img decoding="async" class="bill" src="images/5-dollar-bill.jpg" alt="Five"  height="50"></div>
+                <div><img decoding="async" class="bill" src="images/10-dollar-bill.jpg" alt="Ten"  height="50"></div>
+                <div><img decoding="async" class="bill" src="images/20-dollar-bill.jpg" alt="Twenty"  height="50"></div>
+                <div><img loading="async" class="bill" src="images/100-dollar-bill.jpg" alt="Hundred"  height="50"></div>
+                
+                
+                <div class="vertical lshift">$1 Dollar Bill</div>
+                <div class="vertical lshift">$5 Dollar Bills</div>
+                <div class="vertical lshift">$10 Dollar Bills</div>
+                <div class="vertical lshift">$20 Dollar Bills</div>
+                <div class="vertical lshift">$100 Dollar Bills</div>
+                
+                <div class="header"><div class="center">Count</div></div>
+                <div class="count">1</div>
+                <div class="count">1</div>
+                <div class="count">1</div>
+                <div class="count">1</div>
+                
+            </div>
         </div>
         <form>
             <div>Price: <span id="price"></span>
@@ -62,6 +66,7 @@
             </div>
             <button type="submit" id="purchase-btn">Buy it now!</button>
         </form>
+        
     </main>
     <script src="script.js"></script>
 </body>
