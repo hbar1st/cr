@@ -1,72 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">,
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" href="styles.css">
     <title>Cash Register</title>
-</head>
-<body>
+</head><body>
     <main>
         
         <div id="register">CASH</div>
-        <div class="drawer">
-            <div id="coinarea">
-                <div class="header"><div class="center">Denomination</div></div>
-                
-                <div><img decoding="async" class="coin" src="images/1-cent.png" alt="Penny" ></div>
-                <div><img decoding="async" class="coin" src="images/5-cent.png" alt="Nickel"  ></div>
-                <div><img decoding="async" class="coin" src="images/10-cent.png" alt="Dime"  ></div>
-                <div><img decoding="async" class="coin" src="images/25-cent.png" alt="Quarter"  ></div>
-                <div class="header spacer"></div>
-                <div class="vertical shift">Cent</div>            
-                <div class="vertical shift">Nickel</div>            
-                <div class="vertical shift">Dime</div>            
-                <div class="vertical shift">Quarter</div>
-                
-                <div class="header"><div class="center">Count</div></div>
-                <div class="count">1</div>
-                <div class="count">1</div>
-                <div class="count">1</div>
-                <div class="count">1</div>
-                
-            </div>
+        <div class="drawer ">
             <div id="billarea">
                 
                 
-                <div><img decoding="async" class="bill" src="images/1-dollar-bill.jpg" alt="One"  height="50"></div>
-                <div ><img decoding="async" class="bill" src="images/5-dollar-bill.jpg" alt="Five"  height="50"></div>
-                <div><img decoding="async" class="bill" src="images/10-dollar-bill.jpg" alt="Ten"  height="50"></div>
-                <div><img decoding="async" class="bill" src="images/20-dollar-bill.jpg" alt="Twenty"  height="50"></div>
-                <div><img loading="async" class="bill" src="images/100-dollar-bill.jpg" alt="Hundred"  height="50"></div>
+                <div><img decoding="async" class="bill" src="https://res.cloudinary.com/hbrwdfccc/image/upload/v1722201278/1-dollar-bill.jpg" alt="One"  height="55"></div>
+                <div ><img decoding="async" class="bill" src="https://res.cloudinary.com/hbrwdfccc/image/upload/v1722201278/5-dollar-bill.jpg" alt="Five"  height="55"></div>
+                <div><img decoding="async" class="bill" src="https://res.cloudinary.com/hbrwdfccc/image/upload/v1722201278/10-dollar-bill.jpg" alt="Ten"  height="55"></div>
+                <div><img decoding="async" class="bill" src="https://res.cloudinary.com/hbrwdfccc/image/upload/v1722201282/50-dollar-bill.jpg" alt="Twenty"  height="55"></div>
+                <div><img loading="async" class="bill" src="https://res.cloudinary.com/hbrwdfccc/image/upload/v1722201282/100-dollar-bill.jpg" alt="Hundred"  height="55"></div>
                 
                 
                 <div class="vertical lshift">$1 Dollar Bill</div>
                 <div class="vertical lshift">$5 Dollar Bills</div>
                 <div class="vertical lshift">$10 Dollar Bills</div>
-                <div class="vertical lshift">$20 Dollar Bills</div>
+                <div class="vertical lshift">$50 Dollar Bills</div>
                 <div class="vertical lshift">$100 Dollar Bills</div>
                 
-                <div class="header"><div class="center">Count</div></div>
-                <div class="count">1</div>
-                <div class="count">1</div>
-                <div class="count">1</div>
-                <div class="count">1</div>
+                <div class="count" id="5"></div>
+                <div class="count" id="6"></div>
+                <div class="count" id="7"></div>
+                <div class="count" id="8"></div>
+                <div class="count" id="9"></div>
+                
+            </div>
+            <div id="coinarea">
+                <div class="header"><div class="center" id="denom">
+                    <span>D</span>
+                    <span>E</span><span>N</span><span>O</span><span>M</span><span>I</span>
+                    <span>N</span><span>A</span><span>T</span>
+                    <span>I</span><span>O</span><span>N</span>
+                </div></div>
+                
+                <div><img decoding="async" class="coin" src="https://res.cloudinary.com/hbrwdfccc/image/upload/v1722201278/1-cent.png" alt="Penny" ></div>
+                <div><img decoding="async" class="coin" src="https://res.cloudinary.com/hbrwdfccc/image/upload/v1722201278/5-cent.png" alt="Nickel"  ></div>
+                <div><img decoding="async" class="coin" src="https://res.cloudinary.com/hbrwdfccc/image/upload/v1722201278/10-cent.png" alt="Dime"  ></div>
+                <div><img decoding="async" class="coin" src="https://res.cloudinary.com/hbrwdfccc/image/upload/v1722201279/25-cent.png" alt="Quarter"  ></div>
+                <div class="header spacer"> </div>
+                <div class="vertical shift">Penny</div>            
+                <div class="vertical shift">Nickel</div>            
+                <div class="vertical shift">Dime</div>            
+                <div class="vertical shift">Quarter</div>
+                
+                <div class="header"><div></div></div>
+                <div class="count" id="1"></div>
+                <div class="count" id="2"></div>
+                <div class="count" id="3"></div>
+                <div class="count" id="4"></div>
                 
             </div>
         </div>
-        <form>
-            <div>Price: <span id="price"></span>
-            </div>
-            <div>Customer Pays:
-                <input id="cash">
-            </div>
-            <div>Change:
-                <div id="change-due"></div>
-            </div>
-            <button type="submit" id="purchase-btn">Buy it now!</button>
-        </form>
-        
+
+        <div id="payarea">
+            <span class="sticker" id="price"></span>
+            <form>
+                
+                <label for="cash">Customer Pays:</label>
+                <input id="cash" required type="number" min="0" max="5000" step="0.01" >
+                <button type="submit" id="purchase-btn" >Buy it now!</button>
+                
+            </form>
+        </div>
+
+        <details><summary>Change Due</summary>
+            <div id="total-change-due"></div>
+            <div id="change-due"></div>
+        </details>
+    
     </main>
     <script src="script.js"></script>
 </body>

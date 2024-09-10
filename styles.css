@@ -18,12 +18,18 @@ img {
 body {
     background-color: rgb(192, 175, 199);
 }
+
 main {
     display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: .2fr 3.5fr 2fr;
+    grid-template-columns: 15px minmax(20rem, 650px) 15px;
+    grid-template-rows: .2fr auto 2fr 2fr;
     justify-content: space-evenly;
     row-gap: 0px;
+    margin: 0 auto 0 auto;
+    width: 51rem;
+}
+#payarea {
+    grid-column: 2;
 }
 form {
     margin: 1rem 0 auto 0;
@@ -33,7 +39,7 @@ form {
     display: flex;
     row-gap: 1rem;
     justify-content: flex-start;
-    align-items: flrex-start;
+    align-items: flex-start;
     flex-direction: column;
     background-color:#a0c4ed;
     
@@ -49,11 +55,15 @@ form {
     background-size: 3% 90%;
     
 }
+form input {
+    box-sizing: border-box;
+    width: 100%
+}
 button {
-    box-sizing: content-box;
+    /* box-sizing: content-box;*/
     border-radius: 5px;
-    width: 50%;
-    max-width: 10rem;
+    width: 100%;
+    /*  max-width: 10rem;*/
     color: rgb(252, 235, 251);
     font-weight: 600;
     letter-spacing: 1px;
@@ -64,16 +74,70 @@ button {
     padding: .5rem 1rem .5rem 1rem;
     background: linear-gradient(  rgb(37, 24, 44) 2%,rgb(171, 108, 201) 3%, rgb(171, 108, 201) 20%,
     rgb(99, 62, 116) 30%,
-     rgb(57, 35, 68) 50%);
+    rgb(57, 35, 68) 50%);
     
     box-shadow: inset;
 }
-
+button:disabled {
+    color: gray;
+}
 button:hover {
-    box-shadow: 0px 0px 10px 9px rgb(202, 177, 212);
+    box-shadow: 0px 0px 10px 9px rgb(218, 195, 227);
     cursor: pointer;
 }
+details {
+    grid-column: 2/3;
+    grid-row: 4;
+    margin-top: 1rem;
+    border: 2px double pink;
+    font-family:'Courier New', Courier, monospace;
+    font-kerning: normal;
+    font-weight: 600;
+    color: rgb(37, 24, 44);
+    min-height: 2rem;
+    max-height: 2rem;
+    background-color: white;
+}
+details summary {
+    margin-top: 0.3rem;
+    margin-left: .2rem;
+}
+details > p {
+    border-radius: 0 0 10px 10px;
+    background-color: #ddd;
+    padding: 2px 6px;
+    margin: 0;
+    box-shadow: 3px 3px 4px black;
+}
+details[open] {
+    padding: 0.5em;
+}
+summary {
+    color: rgb(89, 9, 129);
+    font-weight: 600;
+}
+details[open] summary {
+    border-bottom: 1px solid pink;
+    margin-bottom: 0.5em;
 
+}
+
+.sticker {
+    z-index:2;
+    position: absolute;
+    transform-origin: 80% 8%;
+    transform: rotate(-25deg) translate(-4rem,-2.9rem);
+    color: rgb(37, 24, 44);
+    padding: .1rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    border: 2px dashed rgb(37, 24, 44);
+    background: hwb(30 35% 3%);
+    font-size: 18px;
+}
+.sticker::before {
+    content: 'MSRP';
+}
 #coinarea > div {
     border-left: 3px solid black;
     border-right: 3px solid black;
@@ -85,8 +149,8 @@ button:hover {
 }
 
 .bill {
-    transform-origin: 35% 80%;
-    transform: rotate(90deg) translate(2rem, 1rem);
+    transform-origin: 50% 100%;
+    transform: rotate(90deg) translate(3rem, 1.8rem) scale(1.4,1.2);
     padding: 0;
     margin: 0;
 }
@@ -95,58 +159,72 @@ button:hover {
     height: 50px;
     object-fit: fill;
     text-align: center;
+    transform: translate(0rem, 1.3rem);
 }
 .vertical {
     border: none !important;
 }
 .lshift {
     transform-origin: bottom right;
-    transform: rotate(90deg) translate(1rem, 6.6rem);
+    transform: rotate(90deg) translate(.6rem, 7rem);
 }
 
 .shift {
-    trasnform-origin: bottom right;
     transform: rotate(90deg) translate(-1rem, -3rem);
 }
+
 #register {
+    grid-column: 1 / 4;
     z-index: 2;
+    width: 100%;
     color: gold;
     font-weight: 600;
     text-align: center;
-    background: linear-gradient(black, rgb(35, 33, 33), rgb(73, 63, 63));
-    height: 1.4rem;
+    background: linear-gradient(gray, rgb(35, 33, 33) 50%, rgb(73, 63, 63));
+    height: 2.5rem;
     background-color: black;
     border-bottom: 5px solid black;
-    position: absolute;
-    top: 0;
-    width: calc(100vw - 1rem);
     margin: 0 auto 0 auto;
     border-bottom-left-radius: 55px;
     border-bottom-right-radius: 55px;
     font-stretch:ultra-expanded;
-
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 1.5rem;
+    letter-spacing: .8px;
+    align-items: center;
     &::before, &::after {
         content: '$$$';
         color: gold;
         padding: 1rem;
+        font-size: 1.5rem;
         font-family:'Courier New', Courier, monospace;
         font-stretch:ultra-expanded;
         font-variant-numeric:oldstyle-nums;
         font-weight: 600;
+        
     }
 }
 
 .drawer {
+    grid-column: 2 / 3;
     color: rgb(245, 225, 113);
     font-weight: 600;
     border: 3px solid black;
+    border-left-width: 13px;
+    border-bottom: 1px solid transparent;
+    border-right: 13px solid black;
+    padding-bottom: 23px;
+    background-size: 5% 5%;
+    background: repeating-linear-gradient(black 1%, rgb(97, 88, 88) 4%,white 5%, black 7%, rgb(29, 27, 27));
+    /* (first radius values) / top-left | top-right | bottom-right | bottom-left */
+    border-radius: 0 0 15% 15%;
     
 }
 #coinarea, #billarea {
-
-   /* background: repeating-linear-gradient(rgb(152, 152, 152), gray , black 80%,  rgb(0, 0, 0)),
-   */
-   background: radial-gradient(black 9px, transparent 10px),
+    
+    background: radial-gradient(black 9px, transparent 10px),
     repeating-radial-gradient(
     black 0,
     #a29797 20px,
@@ -155,7 +233,6 @@ button:hover {
     rgb(49, 46, 46) 11px,
     transparent 6px);
     background-size: 3% 190%;
-    
     text-align: center;
     align-content: space-around;
     justify-content: space-between;
@@ -175,10 +252,10 @@ button:hover {
     background-size: 3% 190%;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-    grid-template-rows:  2fr auto 0.8fr;    
+    grid-template-rows:  2fr auto 0.8fr;   
+    row-gap: .2rem; 
     padding-bottom: 2.5rem;    
-}
-    
+} 
 
 #billarea {
     display: grid;
@@ -196,34 +273,132 @@ button:hover {
 body > main > form > div:nth-child(1) {
     margin-top: 2.5rem;
 }
-form > div {
-    margin-left: 1rem;
+
+form > * {
+    text-align: center;
     color: rgb(123, 77, 145);
     font-weight: 600;
-    width: fit-content;
-    background: linear-gradient(45deg, white 10%, rgb(230, 190, 249), white);    
+    width: 100%;
+    background: linear-gradient(45deg, transparent 10%, rgb(230, 190, 249), transparent);    
 }
 
-.button{
-    animation: depress forwards 2s;
+#denom {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+}
+#denom > span {
+    font-size: 10px;
+    padding: 0;
+    margin: 0;
+    z-index: 2;
+    background-color: black;
+    transform-origin: 50% 50%;
+    /*transform: rotate(180deg);*/
+    transform: translate(-.5rem, -5rem);
+    width: 1rem;
+}
+
+#change-due {
+    display: grid;
+    row-gap: .1rem;
+    grid-template-columns: 1fr 1fr;
+    background-color: white;
+    color: rgb(58, 5, 85);
+    font-weight: 500;
+}
+#change-due > p {
+    border: 1px dotted rgb(85, 83, 83);
+    color: rgb(58, 5, 85);
+    font-weight: 600;
+    letter-spacing: 2px;
+    padding: .1rem .5rem .1rem .5rem;
+    font-family: 'Courier New', Courier, monospace;
+}
+#change-due :first-child {
+    font-weight: 600;
+    font-size: 1.1rem;
+    background-color: white;
+    color: black;
+    grid-column: 1 / 3;
+    width: 100%;
+    text-align: center;
+}
+button:active {
+    box-shadow: none;
+    animation: depress forwards 1s linear;
+}
+.open {
+    /** use a timing - acceleration graph to make the drawer close fast then slow **/
+    animation: open forwards 1s cubic-bezier(0.075, 1.72, 0.125, .85);
 }
 .close {
-    animation: close forwards 1s linear;
+    /** use a timing - acceleration graph to make the drawer close fast then slow **/
+    animation: close forwards 1s cubic-bezier(0.075, 1.72, 0.165, .85);
+}
+.countdown {
+    animation: flip forwards 2s linear;
+}
+
+@keyframes flip {
+    0% { transform: skew(0, 0)}
+    50% { transform: scale(.5, .5) skew(360deg, 0deg)}
+    100% { transform: scale(1,1)}
 }
 
 @keyframes depress{
-    0% {transform: scale(0.95)}
+    0% {transform: scale(1)}
+    50% {transform: scale(.95)}
     100%{transform: scale(1)}
+}
+
+@keyframes open{
+    0% { transform: translateY(-300px)}
+    90% { transform: translateY(-5px)}
+    100% { transform: translateY(0px)}
 }
 
 @keyframes close{
     0% { transform: trasnlateY(-1px)}
-    100% { transform: translateY(-290px)}
+    100% { transform: translateY(-300px)}
 }
 /** media rule to make the cash drawer portrait orientation for cellphones and smaller screens */
-@media only screen and (max-width: 590px) {
+@media only screen and (max-width: 790px) {
     
-    #coinarea, #billarea {
+    #coinarea, #billarea , #register , .drawer {
         display: none !important; /* had to write important here because this class is less specific than earlier id styles */
+    }
+    .sticker {
+        display: absolute;
+        top: 2.5rem;
+        left: 5rem;
+    }
+    main {
+        width: auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        min-width: auto;
+        grid-template-rows: 1fr auto;
+        justify-content: center;
+        align-items: center;
+    }
+    #payarea {
+        grid-column: 1;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    details {
+        grid-column: 1;
+        width: 80%;
+        margin-left: auto;
+        margin-right: auto;
+        grid-row: 2;
+    }
+    .open {
+        animation: none;
+    }
+    .close {
+        animation: none
     }
 }
