@@ -52,9 +52,9 @@ updatePrice(price);
 //display the cash in the drawer
 function updateCashDrawer(cid) {
   for (let i = 1; i <= cid.length; i++) {
-    let v = Number(cid[i-1][1]);
-    document.getElementById(i).innerText = 
-    Math.ceil(v*100) / denominations[cid[i-1][0]];
+    let v = Number(cid[i - 1][1]);
+    document.getElementById(i).innerText =
+      Math.ceil(v * 100) / denominations[cid[i - 1][0]];
   }
 }
 updateCashDrawer(cid);
@@ -63,7 +63,7 @@ updateCashDrawer(cid);
 * figure out how much total cash is there in the drawer
 */
 function getTotalCashAmount(cid) {
-  let cash = cid.reduce((acc, el)=> acc+Number(el[1]), 0);
+  let cash = cid.reduce((acc, el) => acc + Number(el[1]), 0);
   return cash.toFixed(0);
 }
 
@@ -82,19 +82,19 @@ purchase.addEventListener('click', (e) => {
   let wasCashGiven = false;
   let totalChangeDueAmt = 0;
   //const statusStrings = ['INSUFFICIENT_FUNDS', 'OPEN', 'CLOSED'];
-  const statusStrings = { insuffFunds : 'INSUFFICIENT_FUNDS', open : 'OPEN', closed : 'CLOSED'};
+  const statusStrings = { insuffFunds: 'INSUFFICIENT_FUNDS', open: 'OPEN', closed: 'CLOSED' };
   let statusIndex = statusStrings.open;
   e.preventDefault();
-  
+
   updatePrice(price); //make sure the current price is up
-  
+
   const centPrice = Number((price * 100).toFixed(0));
-  
+
   const cashPaid = cash.value.trim();
-  if (( cashPaid > 5000 ) || (cashPaid < 0)) {
+  if ((cashPaid > 5000) || (cashPaid < 0)) {
     alert("Cash paid should be a number between 0 and $5000");
   }
-  const validCash = /(\d{0,5}.?\d\d)/;
+  const validCash = /(\d{0,5}.?\d{0,2})/;
   const cashMatch = validCash.exec(cashPaid);
   let dollarsPaid = NaN;
   if (cashPaid) {
@@ -107,7 +107,7 @@ purchase.addEventListener('click', (e) => {
     return;
   }
   const centsPaid = Number((dollarsPaid * 100).toFixed(0));
-  if ( centsPaid < centPrice ) {
+  if (centsPaid < centPrice) {
     closeDrawer = true;
     statusIndex = statusStrings.closed;
     alert("Customer does not have enough money to purchase the item");
@@ -116,59 +116,59 @@ purchase.addEventListener('click', (e) => {
     closeDrawer = false;
     totalChangeDueAmt = ((centsPaid - centPrice) / 100).toFixed(2);
   }
-  
-  if ( wasCashGiven ) {
+
+  if (wasCashGiven) {
     kaching.play();
   } else {
     drawerSound.play();
   }
-  
-  let cashCentValues = cid.map( el => {
+
+  let cashCentValues = cid.map(el => {
     let arr = [el[0]];
     arr.push(Number((el[1] * 100).toFixed(0)));
     return arr;
   });
-  
+
   const dollarChange = cash - price;
   let centsChange = centsPaid - centPrice;
-  const totalCashCents = getTotalCashAmount(cid.map((el)=> [ el[0], Number((el[1]*100).toFixed(0))]));
-  
+  const totalCashCents = getTotalCashAmount(cid.map((el) => [el[0], Number((el[1] * 100).toFixed(0))]));
+
   if (totalCashCents < centsChange) {
     //insufficient funds
-    statusIndex = statusStrings.insuffFunds; 
+    statusIndex = statusStrings.insuffFunds;
     closeDrawer = true;
     changeDue.innerHTML = `<p>Status: ${statusIndex}</p>`;
   } else {
-    if ( totalCashCents == centsChange ) {
+    if (totalCashCents == centsChange) {
       closeDrawer = true;
       statusIndex = statusStrings.closed;
     } else {
       statusIndex = statusStrings.open;
     }
     let cashReturned = {};
-    for (let i = cashCentValues.length-1; i >= 0; i--) {
-      if ( cashCentValues[i][1] != 0) {
+    for (let i = cashCentValues.length - 1; i >= 0; i--) {
+      if (cashCentValues[i][1] != 0) {
         let dtype = cashCentValues[i][0];
-        
-        if (centsChange >= denominations[dtype] ) {
-          
-          cashReturned[dtype] ? cashReturned[dtype] = denominations[dtype] + Number(cashReturned[dtype]):
-          cashReturned[dtype] = denominations[dtype];
-          
+
+        if (centsChange >= denominations[dtype]) {
+
+          cashReturned[dtype] ? cashReturned[dtype] = denominations[dtype] + Number(cashReturned[dtype]) :
+            cashReturned[dtype] = denominations[dtype];
+
           centsChange -= denominations[dtype];
           cashCentValues[i][1] -= Number(denominations[dtype]);
           if (cashCentValues[i][1] != 0) {
             i++;
           }
         }
-      } 
+      }
     }
-    
-    if ( centsChange != 0 ) {
+
+    if (centsChange != 0) {
       statusIndex = statusStrings.insuffFunds; //inusfficient funds since there is still change due at this point
-    } 
+    }
     changeDue.innerHTML = `<p>Status: ${statusIndex}</p>`;
-    if ( statusIndex != statusStrings.insuffFunds) {
+    if (statusIndex != statusStrings.insuffFunds) {
       Object.keys(cashReturned).map(key => {
         const dollars = (Number(cashReturned[key]) / 100).toFixed(2);
         changeDue.innerHTML += `<p> ${key}: $${dollars}</p>`;
@@ -181,14 +181,14 @@ purchase.addEventListener('click', (e) => {
       changeDue.innerHTML = "No change due - customer paid with exact cash";
     }
   }
-  
+
   totalChangeDue.innerHTML = `Change Due: $${totalChangeDueAmt}`;
   summary.style.listStylePosition = 'inside';
-  
+
   animateDrawer(closeDrawer);
   kaching.addEventListener('ended', event => {
     soundIndicator();
-    cid = cashCentValues.map(el => [el[0], Number(el[1]/100).toFixed(2)]); //switch cents to dollars before display
+    cid = cashCentValues.map(el => [el[0], Number(el[1] / 100).toFixed(2)]); //switch cents to dollars before display
     updateCashDrawer(cid);
   });
 });
@@ -199,7 +199,7 @@ purchase.addEventListener('click', (e) => {
 function soundIndicator() {
   var context = new AudioContext();
   var o = context.createOscillator();
-  var  g = context.createGain()
+  var g = context.createGain()
   o.connect(g)
   g.connect(context.destination)
   o.start(0)
@@ -220,11 +220,11 @@ function animateDrawer(closeDrawer) {
       drawer.classList.remove('close');
       changeFieldset.classList.remove('close');
       form.classList.remove('close');
-      
+
       drawer.classList.add('open');
       changeFieldset.classList.add('open');
       form.classList.add('open');
-      
+
       isDrawerOpen = true;
     }
   } else {
